@@ -1,0 +1,61 @@
+<% if (canaries.length > 0) { %>
+<div class="container-fluid">
+<div class="card mb-3">
+  <div class="card-header"><i class="fas fa-table"></i> Canaries™ </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dt_locVent" width="100%" cellspacing="0" style="position: relative; overflow:auto; max-height:100vh; width:100%">
+        <thead>
+          <tr class="align-middle text-center">
+            <th>Status</th>
+            <th>Tech.</th>
+            <th><i class="fas fa-sort mr-2"></i>Unit Number</th>
+            <th><i class="fas fa-sort mr-2"></i>Unit Name</th>
+            <th><i class="fas fa-sort mr-2"></i>Node ID</th>
+            <th><i class="fas fa-sort mr-2"></i>Run Time</th>
+            <th><i class="fas fa-sort mr-2"></i>Last Calibrated</th>
+            <!-- <th><i class="fas fa-sort mr-2"></i>Latitude</th>
+            <th><i class="fas fa-sort mr-2"></i>Longitude</th> -->
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% canaries.forEach((canary, index) => {
+            let cali_recali =  canary.last_calibrated === null ? 'Calibrate': 'Recalibrate',
+              cal_dateVar =  canary.last_calibrated === null ? 'UNCALIBRATED': canary.last_calibrated;
+          %>
+              <tr class="text-center">
+                  <!-- <th scope="row" class="align-middle"><% if (canary.isActive == 'active') { %> Active <% } else if (canary.isActive == 'pending') { %>  Pending <% } else { %> Complete <% } %> </th> -->
+                  <th scope="row" class="align-middle"><%= canary.unit_number %></th>
+                  <th scope="row" class="align-middle"><%= canary.unit_name %></th>
+                  <td class="align-middle"><%= canary.node_id %></td>
+                  <td class="align-middle"><%= canary.run_time %></td>
+                  <td class="align-middle"><%= cal_dateVar %></td>
+
+                  <td class="align-middle">
+                    <form action="" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="canary_id" value="<%= canary.id %>">
+                      <input type="hidden" name="node_type" value="canary">
+                        <button type="submit" class="mt-1 btn btn-sm btn-primary btn-block" name="processCanary" value="edit">Edit</button>
+                        <a href="/api/calibrate/<%= canary.unit_number %>?type=<%- node_type %>"   class="mt-1 btn btn-sm btn-warning btn-block"><%= cali_recali %></a>
+                        <% if(showUsersSub) {%>
+
+                        <button type="submit" class="mt-1 btn btn-sm btn-danger btn-block" name="processCanary" value="delete">Delete</button>
+                        <% } %>
+
+                        <a href="/api/service_request/<%= canary.unit_number %>?type=<%- node_type %>"   class="mt-1 btn btn-sm btn-secondary btn-block">Service Request</a>
+                    </form>
+                  </td>
+              </tr>
+          <% }) %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+</div>
+</div>
+<% } else { %>
+    <p class="text-center">No <%= searchObjs %> found.</p>
+<% } %>

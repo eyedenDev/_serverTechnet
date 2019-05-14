@@ -1,0 +1,27 @@
+<% if (results.length > 0) { %>
+<div class="container-fluid">
+<div class="card mb-3">
+  <%   let treatmentCaption = props.state == 'active' ? 'Active' : props.state == 'inactive' ? 'Inactive' : '' ;%>
+  <div class="card-header">
+    <span class="float-left">
+      <a href="<%= cal_view %>"  rel="noopener" class="btn btn-sm btn-warning">
+        <% if (isCalibrated) { %> RECALIBRATE CANARY <% } else  { %> CALIBRATE CANARY <% } %>
+      </a>
+
+    </span>
+    <span class="float-right">
+
+      <a href="/api/treatment/view/<%= returnVar %>"  rel="noopener" class="btn btn-sm btn-primary">
+        BACK TO TREATMENT</a>
+    </span>
+  </div>
+
+  <div class="card-body">
+
+  </div>
+  <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+</div>
+</div>
+<% } else { %>
+    <p class="text-center">No Results found.</p>
+<% } %>

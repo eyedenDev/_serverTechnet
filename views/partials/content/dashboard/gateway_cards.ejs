@@ -1,0 +1,46 @@
+<div class="col-lg-12 w-75 mx-auto p-4 text-center">
+  <div id="showbox-example" class="showbox">
+      <% if (gateways.length > 0) {%>
+        <div class="card-columns">
+        <% gateways.forEach((gateway, index) => { %>
+          <% let lastActive  = moment(gateway.activeDate).format('MMM Do YY, h:mm:ss a'),
+          assigned = gateway.assignedTo !== null ? gateway.assignedTo : 'Unassigned'; %>
+          <div class="card p-3">
+            <h4 class="card-title"><span class="text-muted">Gateway ID: </span> <%= gateway.gateway %></h4>
+            <div class="dropdown-divider mt-3"></div>
+
+
+            <h5 class=" card-title">Treatments</h5>
+
+            <p class=" card-title"><span class="text-muted small">CURRENT CONFIGURATION:</span><%= gateway.treatmentCount %><br /> <span class="text-muted small">RUN TIME HOURS:</span> <%= gateway.run_time %></p>
+
+            <p class="card-text text-center"><span class="text-muted small">ASSIGNED TO:</span> <%= assigned %></p>
+            <div class="container text-center">
+
+
+              <form action="" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="gateway" value="<%= gateway.gateway %>">
+                <input type="hidden" name="node_type" value="gateway">
+                  <button type="submit" class="mt-1 btn btn-sm btn-primary btn-block" name="processGate" value="edit">Edit</button>
+                  <% if(showUsersSub) {%>
+                  <button type="submit" class="mt-1 btn btn-sm btn-danger btn-block" name="processGate" value="delete">Delete</button>
+                  <% } %>
+							</form>
+
+            <p class="card-text">
+              <small class="text-muted">Last Used: <%= lastActive %></small>
+            </p>
+          </div>
+        </div>
+        <% }) %>
+      <% } else { %>
+        <div class="card-columns">
+          <div class="card bg-warning text-center p-3">
+            <blockquote class="card-blockquote">
+              <p>There are no Gateways  on record in our database. Use form above to create.</p>
+            </blockquote>
+          </div>
+        </div>
+      <% } %>
+  </div>
+</div>

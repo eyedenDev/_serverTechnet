@@ -1,0 +1,211 @@
+<%
+var boardMrkr, trtmntMrkr, canaryMrkr, cubMrkr, userMrkr, industryMrkr, locationMrkr,
+cropMrkr, abateMrkr,disMrkr, restMrkr, pestMrkr, cleanMrkr, wwMrkr;
+breadcrumbs.forEach((crumb, index) => {
+  trtmntMrkr = breadcrumbs[index].label.indexOf('Treatments') !== -1 || breadcrumbs[index].label.indexOf('All') !== -1 || breadcrumbs[index].label.indexOf('Active') !== -1 || breadcrumbs[index].label.indexOf('Inactive') !== -1 ? ' active' : '';
+  canaryMrkr = breadcrumbs[index].label.indexOf('Canaries') !== -1 ? ' active' : '';
+  cubMrkr = breadcrumbs[index].label.indexOf('CÜBs') !== -1 ? ' active' : '';
+  userMrkr = breadcrumbs[index].label.indexOf('Users') !== -1 ? ' active' : '';
+  industryMrkr = breadcrumbs[index].label.indexOf('Industry') !== -1 ? ' active' : '';
+  locationMrkr = breadcrumbs[index].label.indexOf('Location') !== -1 ? ' active' : '';
+  cropMrkr = breadcrumbs[index].label.indexOf('Crops') !== -1 ? ' active' : '';
+  abateMrkr = breadcrumbs[index].label.indexOf('Abatements') !== -1 ? ' active' : '';
+  disMrkr = breadcrumbs[index].label.indexOf('Disinfections') !== -1 ? ' active' : '';
+  restMrkr = breadcrumbs[index].label.indexOf('Restorations') !== -1 ? ' active' : '';
+  pestMrkr = breadcrumbs[index].label.indexOf('Pests') !== -1 ? ' active' : '';
+  cleanMrkr = breadcrumbs[index].label.indexOf('Clean') !== -1 ? ' active' : '';
+  boardMrkr = breadcrumbs[index].label.indexOf('Overview') !== -1 ? ' active' : '';
+});
+%>
+
+<ul id="accordion1" class="nav nav-pills flex-column sidebar navbar-nav">
+  <li class="nav-item <%= boardMrkr %>">
+    <a class="nav-link" href="/api">
+      <i class="fas fa-tachometer-alt"></i><span> Dashboar--d</span>
+    </a>
+  </li>
+  <li class="nav-item <%= trtmntMrkr %>">
+    <a class="nav-link" data-toggle="collapse" href="#item-1" data-parent="#accordion1">
+      <i class="fa fa-fw fa-chart-area"></i><span class="ml-1">Treatments</span>
+    </a>
+    <div id="item-1" class="collapse ">
+
+    <!-- <div id="item-1" class="collapse show"> -->
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/api/display_treatments/all">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/display_treatments/active">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/display_treatments/inactive">Inactive</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="nav-item<%= canaryMrkr %>">
+    <a class="nav-link" href="/api/canarys">
+      <i class="fas fa-suitcase"></i>
+      <span class="ml-2"> Canaries</span></a>
+  </li>
+  <li class="nav-item<%= cubMrkr %>">
+    <a class="nav-link" href="/api/cubs">
+      <i class="fas fa-cube"></i>
+      <span class="ml-2"> C&Uuml;Bs</span></a>
+  </li>
+  <% if(showUsers) { %>
+    <li class="nav-item<%= userMrkr %>">
+      <a class="nav-link" href="/api/user">
+        <i class="fas fa-user-friends"></i>
+        <span class="ml-2"> Users</span></a>
+    </li>
+  <%# <!-- %>
+    <li class="nav-item<%= industryMrkr %>">
+      <a class="nav-link" href="/api/industry_sectors">
+        <i class="fas fa-business-time"></i><span> Industries</span></a>
+    </li>
+
+  <li class="nav-item<%= locationMrkr %>">
+    <a class="nav-link" data-toggle="collapse" href="#item-2" data-parent="#accordion1">
+      <i class="fas fa-warehouse"></i><span>Locations</span>
+    </a>
+    <div id="item-2" class="collapse ">
+
+    <div id="item-1" class="collapse show">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_designs"><span>Designs</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_frames"><span>Frames</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_floors"><span>Floors</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_coverings"><span>Coverings</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_gutters"><span>Gutters</span></a>
+        </li>
+        <div class="dropdown-divider"></div>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_heatSystems"><span>Heating Systems</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_vents"><span>Ventilation</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_CO2Systems"><span>CO2</span></a>
+        </li>
+        <div class="dropdown-divider"></div>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_energy_screens"><span>Energy Screens</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_sceen_types"><span>Screen Types</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_misc"><span>Miscellaneous</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/location_power"><span>Power</span></a>
+        </li>
+      </ul>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="/api/crops"><i class="fas fa-lemon"></i><span> Crops</span></a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-3" data-parent="#accordion1">
+      <i class="fas fa-fingerprint"></i><span> Abatements</span>
+    </a>
+    <div id="item-3" class="collapse">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/api/abatements_fungals">Fungals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/abatements_mildews">Mildews</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/abatements_molds">Molds</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/abatements_viroids">Viroids</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/abatements_viruses">Virus</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="/api/disinfections">
+      <i class="fas fa-broom"></i><span> Disinfections</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-4" data-parent="#accordion1">
+      <i class="fab fa-gripfire"></i><span> Restorations</span>
+    </a>
+    <div id="item-4" class="collapse">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/api/restorations_fire">Fires</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/restorations_flood">Floods</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/api/disinfections">
+      <i class="fas fa-bug"></i><span> Pests</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-4" data-parent="#accordion1">
+      <i class="fas fa-code"></i><span class="ml-1">Web Content</span>
+    </a>
+    <div id="item-4" class="collapse">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-3</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+
+
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-4" data-parent="#accordion1">Item 3</a>
+    <div id="item-4" class="collapse">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-3</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  -->
+  <% } %>
+</ul>

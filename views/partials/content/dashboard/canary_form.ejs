@@ -1,0 +1,52 @@
+<div class="col-lg-12 mx-auto w-80 p-3 text-center">
+  <div class="card">
+    <div class="card-header d-flex align-items-center text-center">
+      <h4 class=" mt-1">ADD NEW <%- add_or_edit %></h4>
+    </div>
+    <div class="card-body">
+      <% if (message != '') { %>
+          <div class="<%= message_type ? `alert alert-${message_type}` : 'alert alert-light'; %>"><%= message %></div>
+      <% } %>
+      <form class="form-horizontal mt-2 add-canary-form" action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="canary_id" value="<%= canary_addEdit.id %>">
+
+
+        <div class="form-group row">
+
+          <!-- <label class="col-sm-2 form-control-label" for="canary-id">Canary ID</label> -->
+          <!-- <div class="col-sm-10"> -->
+          <div class="col-sm-10 offset-sm-1">
+            <input type="text" maxlength="7" class="form-control" name="node_id" id="canary-id" value="<%= canary_addEdit.node_id %>" placeholder="Canary ID" required>
+          </div>
+
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+          <!-- <label class="col-sm-1 form-control-label" for="unit-number"></label> -->
+          <!-- <label class="col-sm-2 form-control-label" for="unit-number">Unit Number</label> -->
+          <div class="col-sm-10 offset-sm-1">
+            <input type="number" class="form-control" name="unit_number" id="unit-number" value="<%= canary_addEdit.unit_number %>" min="1" placeholder="Unit Number" required>
+          </div>
+        </div>
+
+        <div class="line"></div>
+        <div class="form-group row">
+          <!-- <label class="col-sm-1 form-control-label" for="unit-name"></label> -->
+          <!-- <label class="col-sm-2 form-control-label" for="unit-name">Unit Name</label> -->
+          <div class="col-sm-10 offset-sm-1">
+            <input type="text" class="form-control" name="unit_name" id="unit-name" value="<%= canary_addEdit.unit_name %>"  placeholder="Unit Name" required>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+          <div class="col-sm-10 offset-sm-1 float-right">
+          <!-- <div class="col-sm-4 offset-sm-8 float-right"> -->
+            <a href="/api/canarys" id="cancel" name="cancel" class="btn btn-danger btn-sm mb-2"> Cancel</a>
+            <button type="submit" class="btn btn-primary btn-sm mb-2 mr-2" name="processCanary" value="<%= submit_value %>"><%- submit_label %></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

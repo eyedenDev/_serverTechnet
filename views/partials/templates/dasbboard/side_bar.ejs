@@ -1,0 +1,100 @@
+<%
+let boardMrkr, trtmntMrkr, canaryMrkr, cubMrkr, gatewayMrkr, userMrkr, industryMrkr, locationMrkr,
+cropMrkr, abateMrkr,disMrkr, restMrkr, pestMrkr, cleanMrkr, wwMrkr;
+breadcrumbs.forEach((crumb, index) => {
+  console.log('crumb  ===> ', crumb);
+  trtmntMrkr = breadcrumbs[index].label.indexOf('Treatments') !== -1 || breadcrumbs[index].label.indexOf('All') !== -1 || breadcrumbs[index].label.indexOf('Active') !== -1 || breadcrumbs[index].label.indexOf('Pending') !== -1 || breadcrumbs[index].label.indexOf('Dropped') !== -1 || breadcrumbs[index].label.indexOf('Complete') !== -1 ? ' active' : '';
+  canaryMrkr = breadcrumbs[index].label.indexOf('Canaries') !== -1 ? ' active' : '';
+  // cubMrkr = breadcrumbs[index].label.indexOf('CÜBs') !== -1 ? ' active' : '';
+  gatewayMrkr = breadcrumbs[index].label.indexOf('Gateways') !== -1 ? ' active' : '';
+  userMrkr = breadcrumbs[index].label.indexOf('Users') !== -1 ? ' active' : '';
+  industryMrkr = breadcrumbs[index].label.indexOf('Industry') !== -1 ? ' active' : '';
+  locationMrkr = breadcrumbs[index].label.indexOf('Location') !== -1 ? ' active' : '';
+  custMrkr = breadcrumbs[index].label.indexOf('Customers') !== -1 ? ' active' : '';
+
+  pdoMrkr = breadcrumbs[index].label.indexOf('Customers') !== -1 ? ' active' : '';
+  // cropMrkr = breadcrumbs[index].label.indexOf('Crops') !== -1 ? ' active' : '';
+  // abateMrkr = breadcrumbs[index].label.indexOf('Abatements') !== -1 ? ' active' : '';
+  // disMrkr = breadcrumbs[index].label.indexOf('Disinfections') !== -1 ? ' active' : '';
+  // restMrkr = breadcrumbs[index].label.indexOf('Restorations') !== -1 ? ' active' : '';
+  // pestMrkr = breadcrumbs[index].label.indexOf('Pests') !== -1 ? ' active' : '';
+  // cleanMrkr = breadcrumbs[index].label.indexOf('Clean') !== -1 ? ' active' : '';
+  boardMrkr = breadcrumbs[index].label.indexOf('Overview') !== -1 ? ' active' : '';
+});
+%>
+
+<ul id="accordion1" class="nav nav-pills flex-column sidebar navbar-nav">
+  <!-- <li class="nav-item <%= boardMrkr %>">
+    <a class="nav-link" href="/api">
+      <i class="fas fa-tachometer-alt"></i><span> Dashboard</span>
+    </a>
+  </li> -->
+  <li class="nav-item mt-2 <%= trtmntMrkr %>">
+    <a class="nav-link" data-toggle="collapse" href="#item-treatmnts" data-parent="#accordion1">
+      <i class="fa fa-fw fa-chart-area"></i><span class="ml-1">Treatments</span>
+    </a>
+    <div id="item-treatmnts" class="collapse ">
+
+    <!-- <div id="item-1" class="collapse show"> -->
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link toggled" href="/api/display_treatments/all"><span>All</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link sidenav" href="/api/display_treatments/active"><span>Active</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link sidenav" href="/api/display_treatments/pending"><span>Pending</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link sidenav" href="/api/display_treatments/dropped"><span>Dropped</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link sidenav" href="/api/display_treatments/complete"><span>Complete</span></a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link sidenav" href="/api/display_treatments/archived"><span>Archived</span></a>
+        </li> -->
+      </ul>
+    </div>
+  </li>
+  <li class="nav-item<%= canaryMrkr %>">
+    <a class="nav-link" href="/api/canarys">
+      <i class="fas fa-suitcase"></i>
+      <span class="ml-2"> Canaries</span></a>
+  </li>
+
+  <li class="nav-item<%= gatewayMrkr %>">
+    <a class="nav-link" href="/api/gateways">
+      <!-- <a class="nav-link" href="#"> -->
+
+      <i class="fab fa-nintendo-switch"></i>
+      <span class="ml-2"> Gateways</span></a>
+  </li>
+  <div class="dropdown-divider"></div>
+  <!-- <li class="nav-item<%= custMrkr %>">
+    <a class="nav-link" href="/api/customers">
+      <i class="fas fa-user-circle"></i>
+      <span class="ml-2">Customers</span></a>
+  </li> -->
+  <!--
+  <li class="nav-item<%= cubMrkr %>">
+    <a class="nav-link" href="/api/cubs">
+      <i class="fas fa-cube"></i>
+      <span class="ml-2"> C&Uuml;Bs</span></a>
+  </li>
+-->
+  <% if(showUsers) { %>
+    <li class="nav-item<%= userMrkr %>">
+      <a class="nav-link" href="/api/user">
+        <i class="fas fa-user-friends"></i>
+        <span class="ml-2"> Users</span></a>
+    </li>
+
+
+
+
+
+  <% } %>
+
+</ul>

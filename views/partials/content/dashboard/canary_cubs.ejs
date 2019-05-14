@@ -1,0 +1,42 @@
+<div class="col-lg-12 w-75 mx-auto p-4 text-center">
+  <div id="showbox-example" class="showbox">
+      <% if (canaries.length > 0) {%>
+        <div class="card-columns">
+        <% canaries.forEach((canary, index) => { %>
+          <%
+            let cali_recali =  canary.last_calibrated === null ? 'Calibrate': 'Recalibrate';
+            let cal_dateVar =  canary.last_calibrated === null ? 'UNCALIBRATED': canary.last_calibrated;
+          %>
+          <div class="card p-3">
+            <h4 class=" card-title"><%= canary.unit_name %></h4>
+            <h3 class="card-title text-center"><span class="text-muted">Node ID:</span><%= canary.node_id %></h3>
+
+            <p class="card-text text-center">Unit Number: <%= canary.unit_number %></p>
+            <div class="container text-center">
+
+              <form action="" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="canary_id" value="<%= canary.id %>">
+                <input type="hidden" name="node_type" value="canary">
+                  <button type="submit" class="mt-1 btn btn-sm btn-primary btn-block" name="processCanary" value="edit">Edit</button>
+                  <a href="/api/calibrate/<%= canary.node_id %>?type=<%- node_type %>"   class="mt-1 btn btn-sm btn-warning btn-block"><%= cali_recali %></a>
+                  <button type="submit" class="mt-1 btn btn-sm btn-danger btn-block" name="processCanary" value="delete">Delete</button>
+                  <a href="/api/service_request/<%= canary.node_id %>?type=<%- node_type %>"   class="mt-1 btn btn-sm btn-secondary btn-block">Service Request</a>
+							</form>
+
+            <p class="card-text">
+              <small class="text-muted">Last calibrated: <%= cal_dateVar %></small>
+            </p>
+          </div>
+        </div>
+        <% }) %>
+      <% } else { %>
+        <div class="card-columns">
+          <div class="card bg-warning text-center p-3">
+            <blockquote class="card-blockquote">
+              <p>There are no C&Uuml;Bs on record in our database. Use form above to create.</p>
+            </blockquote>
+          </div>
+        </div>
+      <% } %>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<% if (qryResults.length > 0) { %>
+<div class="container-fluid">
+<div class="card mb-3">
+  <div class="card-header"><i class="fas fa-table"></i> <%= searchObjs %></div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dt_abate_mildew" width="100%" cellspacing="0">
+        <thead>
+          <tr class="align-middle text-center">
+            <th>Mildews</th>
+            <th>Carbon Value</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <!-- <tfoot>
+          <tr>
+            <th>Frame</th>
+            <th>Carbon Value</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </tfoot> -->
+        <tbody>
+          <% qryResults.forEach((result, index) => {
+            let cValTemp = result.c_value == null ? 'null': result.c_value;
+          %>
+
+          <tr class="align-middle text-center">
+            <td><%= result.type %></td>
+            <td><%= cValTemp %></td>
+            <td>
+              <% if (result.status == 'approved') { %>
+                APPROVED
+              <% } else { %>
+                <a href="/api/abatements_mildews/approve/<%= result.id %>" class="btn btn-sm btn-warning"><i class="fas fa-thumbs-up"></i></a>
+                <a href="/api/abatements_mildews/expunge/<%= result.id %>" class="btn btn-sm btn-danger"><i class="fas fa-thumbs-down"></i></a>
+              <% }%>
+            </td>
+            <td>
+              <a href="/api/abatements_mildews/<%= result.id %>" class="btn btn-sm btn-warning"><i class="fas fa-marker"></i></a>
+              <a href="/api/abatements_mildews/expunge/<%= result.id %>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
+
+            </td>
+          </tr>
+          <% }) %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+</div>
+</div>
+<% } else { %>
+    <p class="text-center">No <%= searchObjs %> found.</p>
+<% } %>

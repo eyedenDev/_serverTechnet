@@ -1,0 +1,181 @@
+<div class="col-lg-12 mx-auto w-80 p-3 text-center">
+  <div class="card">
+    <div class="card-header d-flex align-items-center text-center">
+      <h4 class="mt-1">CALIBRATE <%= cal_label.toUpperCase() %></h4>
+    </div>
+    <div class="card-body">
+      <% if (message != '') { %>
+          <div class="<%= message_type ? `alert alert-${message_type}` : 'alert alert-light'; %>"><%= message %></div>
+      <% } %>
+      <form class="form-horizontal mt-2add-canary-form" action="" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="canary-id">Canary ID</label>
+                <input type="text" class="form-control" name="node_id" id="canary-id" value="<%= calibration ? calibration.node_id : ''; %>" disabled>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="unit-number">Unit Number</label>
+              <input type="number" class="form-control" name="unit_number" id="unit-number" value="<%= calibration ? calibration.unit_number : ''; %>"  disabled>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="unit-name">Unit Name</label>
+                <input type="text" class="form-control" name="unit_name" id="unit-name" value="<%= calibration ? calibration.unit_name : ''; %>" disabled>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="calibrated-on">Last Calibrated</label>
+                <input type="test" class="form-control" name="calibrated_on" id="calibrated-on" value="<%= calibration ? calibration.calibrated_on : ''; %>" disabled>
+            </div>
+        </div>
+        <hr />
+        <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="temp-div">Temperature Divisor</label>
+              <input type="number" class="form-control" name="temp_divisor" id="temp-div" value="<%= calibration ? calibration.temp_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="temp-mod">Temperature Modifier</label>
+              <input type="number" class="form-control" name="temp_modifier" id="temp-mod" value="<%= calibration ? calibration.temp_modifier : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="humidity-div">Humidity Divisor</label>
+              <input type="number" class="form-control" name="humidity_divisor" id="humidity-div" value="<%= calibration ? calibration.humidity_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="humidity-mod">Humidity Modifier</label>
+              <input type="number" class="form-control" name="humidity_modifier" id="humidity-mod" value="<%= calibration ? calibration.humidity_modifier : ''; %>" step=".01" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for=pressure-div">Pressure Divisor</label>
+              <input type="number" class="form-control" name="pressure_divisor" id=pressure-div" value="<%= calibration ? calibration.pressure_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for=pressure-mod">Pressure Modifier</label>
+              <input type="number" class="form-control" name="pressure_modifier" id=pressure-mod" value="<%= calibration ? calibration.pressure_modifier : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="UV-div">UV Divisor</label>
+              <input type="number" class="form-control" name="UV_divisor" id="UV-div" value="<%= calibration ? calibration.UV_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="UV-mod">UV Modifier</label>
+              <input type="number" class="form-control" name="UV_modifier" id="UV-mod" value="<%= calibration ? calibration.UV_modifier : ''; %>" step=".01" required>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="CdS-div">CdS Divisor</label>
+              <input type="number" class="form-control" name="CdS_divisor" id="CdS-div" value="<%= calibration ? calibration.CdS_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="CdS-mod">CdS Modifier</label>
+              <input type="number" class="form-control" name="CdS_modifier" id="CdS-mod" value="<%= calibration ? calibration.CdS_modifier : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="CO2-div">CO2 Divisor</label>
+              <input type="number" class="form-control" name="CO2_divisor" id="CO2-div" value="<%= calibration ? calibration.CO2_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="CO2-mod">CO2 Modifier</label>
+              <input type="number" class="form-control" name="CO2_modifier" id="CO2-mod" value="<%= calibration ? calibration.CO2_modifier : ''; %>" step=".01" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="O2-div">O2 Divisor</label>
+              <input type="number" class="form-control" name="O2_divisor" id="O2-div" value="<%= calibration ? calibration.O2_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="O2-mod">O2 Modifier</label>
+              <input type="number" class="form-control" name="O2_modifier" id="O2-mod" value="<%= calibration ? calibration.O2_modifier : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="VOC-div">VOC Divisor</label>
+              <input type="number" class="form-control" name="VOC_divisor" id="VOC-div" value="<%= calibration ? calibration.VOC_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="VOC-mod">VOC Modifier</label>
+              <input type="number" class="form-control" name="VOC_modifier" id="VOC-mod" value="<%= calibration ? calibration.VOC_modifier : ''; %>" step=".01" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="NO2-div">NO2 Divisor</label>
+              <input type="number" class="form-control" name="NO2_divisor" id="NO2-div" value="<%= calibration ? calibration.NO2_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="NO2-mod">NO2 Modifier</label>
+              <input type="number" class="form-control" name="NO2_modifier" id="NO2-mod" value="<%= calibration ? calibration.NO2_modifier : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="NH3-div">NH3 Divisor</label>
+              <input type="number" class="form-control" name="NH3_divisor" id="NH3-div" value="<%= calibration ? calibration.NH3_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="NH3-mod">NH3 Modifier</label>
+              <input type="number" class="form-control" name="NH3_modifier" id="NH3-mod" value="<%= calibration ? calibration.NH3_modifier : ''; %>" step=".01" required>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="CO-div">CO Divisor</label>
+            <input type="number" class="form-control" name="CO_divisor" id="CO-div" value="<%= calibration ? calibration.CO_divisor : ''; %>" step=".01" required>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="CO-mod">CO Modifier</label>
+            <input type="number" class="form-control" name="CO_modifier" id="CO-mod" value="<%= calibration ? calibration.CO_modifier : ''; %>" step=".01" required>
+          </div>
+            <div class="form-group col-md-3">
+              <label for="SR1-div">SR1 Divisor</label>
+              <input type="number" class="form-control" name="SR1_divisor" id="SR1-div" value="<%= calibration ? calibration.SR1_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="SR1-mod">SR1 Modifier</label>
+              <input type="number" class="form-control" name="SR1_modifier" id="SR1-mod" value="<%= calibration ? calibration.SR1_modifier : ''; %>" step=".01" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="SR2-div">SR2 Divisor</label>
+              <input type="number" class="form-control" name="SR2_divisor" id="SR2-div" value="<%= calibration ? calibration.SR2_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="SR2-mod">SR2 Modifier</label>
+              <input type="number" class="form-control" name="SR2_modifier" id="SR2-mod" value="<%= calibration ? calibration.SR2_modifier : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="SR3-div">SR3 Divisor</label>
+              <input type="number" class="form-control" name="SR3_divisor" id="SR3-div" value="<%= calibration ? calibration.SR3_divisor : ''; %>" step=".01" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="SR3-mod">SR3 Modifier</label>
+              <input type="number" class="form-control" name="SR3_modifier" id="SR3-mod" value="<%= calibration ? calibration.SR3_modifier : ''; %>" step=".01" required>
+            </div>
+        </div>
+        <div class="text-center">
+          <%  let cancel_link = return_link != null ? return_link : alt_link; %>
+          <a href="<%- cancel_link %>" id="cancel" name="cancel" class="btn btn-sm btn-danger mr-2">Cancel Calibration</a>
+          <button type="submit" class="btn btn-primary btn-sm mr-2" name="processCal" value='return_dash'>
+            <% if(return_link != null) {%>
+              <%= calibration.calibrated_on ? 'RECALIBRATE: TO DASHBOARD' : 'CALIBRATE: TO DASHBOARD'; %>
+            <% } else { %>
+              <%= calibration.calibrated_on ? 'RECALIBRATE' : ' CALIBRATE '; %>
+            <% } %>
+          </button>
+
+          <!--- SHOW RETURN TO TREATMENT DATA VIEW IF CALIBRATING FROM TREATMENT--->
+          <% if(return_link != null) {%>
+            <button type="submit" class="btn btn-warning btn-sm mr-3" name="processCal" value="<%= return_link %>">
+              <%= calibration. calibrated_on ? 'RECALIBRATE: TO TREATMENT' : "CALIBRATE <i class='fa fa-fast-forward'></i> TO TREATMENT";%>
+            </button>
+          <% } %>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+</div>

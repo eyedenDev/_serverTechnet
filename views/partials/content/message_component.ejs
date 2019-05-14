@@ -1,0 +1,5 @@
+<% if (message != '') { %>
+    <div class="<%= message_type ? 'alert alert-'+message_type : 'alert alert-light'; %> mt-3"><%= message %></div>
+<% } else { %>
+  <div class="mt-5 mb-4"></div>
+<% } %>

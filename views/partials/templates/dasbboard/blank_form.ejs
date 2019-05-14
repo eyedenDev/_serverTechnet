@@ -1,0 +1,24 @@
+<div class="col-lg-12 mx-auto w-80 p-3 text-center">
+  <div class="card">
+    <div class="card-header d-flex align-items-center text-center">
+      <h4 class=" mt-1"><%- form_header %></h4>
+    </div>
+    <div class="card-body">
+      <% if (message != '') { %>
+          <div class="<%= message_type ? `alert alert-${message_type}` : 'alert alert-light'; %>"><%= message %></div>
+      <% } %>
+      <form class="mt-1 pl-3 pr-3" action="<%= formAction %>"  method="post" enctype="multipart/form-data" autocomplete="off">
+
+
+
+        <% form_obj.forEach((obj, index) => { %>
+          <%- obj %>
+        <% }) %>
+
+
+
+      </form>
+    </div>
+  </div>
+</div>
+</div>

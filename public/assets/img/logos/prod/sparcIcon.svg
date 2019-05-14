@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 224.2999878 242.201004" style="enable-background:new 0 0 224.2999878 242.201004;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#FFFFFF;stroke:#FDDD10;stroke-width:4.2030001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:#FFFFFF;}
+</style>
+<g>
+	
+		<radialGradient id="SVGID_1_" cx="111.9078369" cy="122.5296478" r="94.1546173" gradientTransform="matrix(1 0 0 -1 0 244)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.02" style="stop-color:#FFEEAC"/>
+		<stop  offset="0.8" style="stop-color:#FEE258"/>
+		<stop  offset="0.98" style="stop-color:#FDDD10"/>
+	</radialGradient>
+	<circle class="st0" cx="111.9078369" cy="121.4703522" r="94.1546173"/>
+	<polygon class="st1" points="112.0537872,41.9345169 122.7952805,103.0160217 166.4647827,77.3435135 135.1792908,115.4000168 
+		185.0332794,120.5285187 135.1792908,125.6555176 166.4647827,163.7120056 122.7952805,138.039505 112.0537872,199.1210175 
+		101.3122787,138.039505 57.6427917,163.7120056 88.9282837,125.6555176 39.0742912,120.5285187 88.9282837,115.4000168 
+		57.6427917,77.3435135 101.3122787,103.0160217 	"/>
+	<polygon class="st2" points="112.0537872,41.9345169 122.7952805,103.0160217 166.4647827,77.3435135 135.1792908,115.4000168 
+		185.0332794,120.5285187 135.1792908,125.6555176 166.4647827,163.7120056 122.7952805,138.039505 112.0537872,199.1210175 
+		101.3122787,138.039505 57.6427917,163.7120056 88.9282837,125.6555176 39.0742912,120.5285187 88.9282837,115.4000168 
+		57.6427917,77.3435135 101.3122787,103.0160217 	"/>
+</g>
+</svg>

@@ -1,0 +1,82 @@
+<!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <div class="float-left">
+                SPARC™ Disinfection Treatment Data  | Canary: <%= canary %>
+              </div>
+              <div class="float-right">
+                <% if (!allow_calibration) { %>
+                 <a href="<%= cal_view %>"  rel="noopener" class="btn btn-sm btn-warning">
+                   <% if (isCalibrated) { %> RECALIBRATE CANARY <% } else  { %> CALIBRATE CANARY <% } %>
+                 </a>
+                 <% } %>
+              </div>
+              </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered h-100">
+                  <thead>
+                    <tr class="text-center">
+                      <th scope="col">Chirp</th>
+                      <th scope="col">Lat</th>
+                      <th scope="col">Long</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">Capture Time</th>
+                      <th scope="col">Temp</th>
+                      <th scope="col">Humid</th>
+                      <th scope="col">Pres</th>
+                      <th scope="col">UV</th>
+                      <th scope="col">Cds</th>
+                      <th scope="col">CO2</th>
+                      <th scope="col">O2</th>
+                      <th scope="col">VOC</th>
+                      <!-- <th scope="col">NO2</th> -->
+                      <th scope="col">NH3</th>
+                      <th scope="col">CO</th>
+                      <th scope="col">SR1</th>
+                      <th scope="col">SR2</th>
+                      <th scope="col">SR3</th>
+                      <th scope="col">SR Alarm</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                          <% results.forEach((result, index) => { %>
+                              <tr class="text-center">
+                                  <th scope="row" class="align-middle"><%= result.id %></th>
+                                  <td class="align-middle"><%= result.latitude %></td>
+                                  <td class="align-middle"><%= result.longitude %></td>
+                                  <td class="align-middle"><%= func_s.moment(result.date).format('ll') %></td>
+                                  <td class="align-middle"><%= result.time %></td>
+                                  <td class="align-middle"><%= func_s.moment(result.insert_time).format('MMM Do YY @ h:mm:ss a') %></td>
+
+                                  <td class="align-middle"><%= result.temperature %></td>
+                                  <td class="align-middle"><%= result.humidity %></td>
+                                  <td class="align-middle"><%= result.pressure %></td>
+                                  <td class="align-middle"><%= result.UV %></td>
+                                  <td class="align-middle"><%= result.CdS %></td>
+                                  <td class="align-middle"><%= result.CO2 %></td>
+                                  <td class="align-middle"><%= result.O2 %></td>
+                                  <td class="align-middle"><%= result.VOC %></td>
+                                  <!-- <td class="align-middle"><%= result.NO2 %></td> -->
+                                  <td class="align-middle"><%= result.NH3 %></td>
+                                  <td class="align-middle"><%= result.CO %></td>
+                                  <td class="align-middle"><%= result.SR1 %></td>
+                                  <td class="align-middle"><%= result.SR2 %></td>
+                                  <td class="align-middle"><%= result.SR3 %></td>
+                                  <!-- <td class="align-middle"><%= result.SRalarm %></td> -->
+                                <% if (result.SRalarm !== null) { %>
+                                  <td class="align-middle"><%= result.SRalarm %></td>
+                                <% } else {%>
+                                  <td class="align-middle">Null</td>
+                                <% } %>
+
+
+                          <% }) %>
+                      </tbody>
+                  </table>
+
+              </div>
+            </div>
+            <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+          </div>

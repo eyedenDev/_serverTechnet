@@ -1,0 +1,63 @@
+<!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              <%=  table_title %></div>
+            <div class="card-body">
+              <% if (treatments.length > 0) {
+                 let treatmentCaption = props.state == 'active' ? 'Active' : props.state == 'inactive' ? 'Inactive' : '' ;
+              %>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Status</th>
+                      <th>Treatment</th>
+                      <th>Customer</th>
+                      <th><img src="/assets/img/logos/canary/canarySolo_k.svg" class="img-fluid" alt="Responsive image" width="20px"></th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Duration</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr class="text-center">
+                      <th>Status</th>
+                      <th>Treatment</th>
+                      <th>Customer</th>
+                      <th><img src="/assets/img/logos/canary/canarySolo_k.svg" class="img-fluid" alt="Responsive image" width="20px"></th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Duration</th>
+                      <th>Actions</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                      <% treatments.forEach((treatment, index) => {
+                        let nodeCount = treatment.nodes.split(',').length;
+                        let duration = func_s.getDuration(treatment.start_time, treatment.end_time);
+                      %>
+                    <tr class="text-center align-middle">
+                      <td><% if (treatment.isActive == 'active') { %> active <% } else  { %> complete <% } %></td>
+                      <td><%= treatment.treatment_id %></td>
+                      <td><%= treatment.customer_name %></td>
+                      <td><%= nodeCount %></td>
+                      <td><%= func_s.moment(treatment.start_time).format('MM/DD/YY h:mm') %></td>
+                      <td><%= treatment.end_time !== null ?  func_s.moment(treatment.end_time).format('MM/DD/YY h:mm') :  'active'; %></td>
+                      <td><%= treatment.end_time !== null ? func_s.getDuration(treatment.start_time, treatment.end_time) + ' hr.' : 'active' %></td>
+                      <td class="align-middle">
+                          <a href="/api/treatment/view/<%= treatment.id %>?td=<%= retun_to_url %>"  rel="noopener" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                          <a href="/api/treatment/archive<%= treatment.id %>"  rel="noopener" class="btn btn-sm btn-primary"><i class="fa fa-archive"></i></a>
+                      </td>
+                    </tr>
+                    <% }) %>
+
+                  </tbody>
+                </table>
+              </div>
+              <% } else { %>
+                  <p class="text-center">No treatments found.</p>
+              <% } %>
+            </div>
+          </div>

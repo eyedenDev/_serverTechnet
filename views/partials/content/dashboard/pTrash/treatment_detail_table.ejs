@@ -1,0 +1,112 @@
+<%
+// filter count
+let v_all = props.records == 'all' ? true: false,
+  v_10 = props.records == undefined ? true : props.records == '10' ? true : false,
+  v_20 = props.records == '20' ? true : false,
+  v_30 = props.records == '30' ? true : false;
+  sr_active = '<span class="sr-only">(current)</span>',
+  isActive = ' active',
+  sr_10 = v_10 ? sr_active : '',
+  sr_20 = v_20 ? sr_active : '',
+  sr_30 = v_30 ? sr_active : '',
+  sr_all = v_all ? sr_active : '',
+  act_10 = v_10 ? isActive : '',
+  act_20 = v_20 ? isActive : '',
+  act_30 = v_30 ? isActive : '',
+  act_all = v_all ? isActive : '';
+
+  // filter starts with
+  let sw_a = props.cust === 'af'? true : false,
+    sw_g = props.cust === 'gk'? true : false,
+    sw_l = props.cust === 'lp'? true : false,
+    sw_q = props.cust === 'qu'? true : false,
+    sw_v = props.cust === 'vz'? true : false,
+    sw_uf = props.cust === 'uf' ? true : false
+    strs_a = sw_a ? sr_active : '',
+    strs_g = sw_g ? sr_active : '',
+    strs_l = sw_l ? sr_active : '',
+    strs_q = sw_q ? sr_active : '',
+    strs_v = sw_v ? sr_active : '',
+    act_A = sw_a ? isActive : '',
+    act_G = sw_g ? isActive : '',
+    act_L = sw_l ? isActive : '',
+    act_Q = sw_q ? isActive : '',
+    act_V = sw_v ? isActive : '',
+    fallback = props.base_url + props.state;
+%>
+<div class="float-left">
+  <nav aria-label="show recordsPer">
+    <ul class="pagination pagination-sm">
+      <li class="page-item disabled"><a class="page-link" href="" tabindex="-1">Per page</a></li>
+      <li class="page-item <%- act_10 %>"><a class="page-link" href="?records=10">10<%- sr_10 %></a></li>
+      <li class="page-item <%- act_20 %>"><a class="page-link" href="?records=20"">20<%- sr_20 %></a>
+      </li>
+      <li class="page-item <%- act_30 %>"><a class="page-link" href="?records=30"">30<%- sr_30 %></a></li>
+      <li class="page-item <%- act_all %>"><a class="page-link" href="?records=all">All<%- sr_all %></a></li>
+    </ul>
+  </nav>
+</div>
+<div class="float-right">
+  <nav aria-label="show startingWith">
+    <ul class="pagination pagination-sm float-right">
+      <li class="page-item <%- act_A %>"><a class="page-link" href="?cust=af" tabindex="-1"> A-F <%- strs_a %></a></li>
+      <li class="page-item <%- act_G %>"><a class="page-link" href="?cust=gk"> G-K <%- strs_g %></a></li>
+      <li class="page-item <%- act_L %>"><a class="page-link" href="?cust=lp""> L-P <%- strs_l %></a></li>
+      <li class="page-item <%- act_Q %>"><a class="page-link" href="?cust=qu""> Q-U <%- strs_q %></a></li>
+      <li class="page-item <%- act_V %>"><a class="page-link" href="?cust=vz"> V-Z <%- strs_v %></a></li>
+      <li class="page-item"><a class="page-link" href="<%- fallback %>"> Unfiltered </a></li>
+    </ul>
+  </nav>
+</div>
+<div class="clearfix"></div>
+<!-- DataTables Example -->
+          <% if (treatments.length > 0) {
+             let treatmentCaption = props.state == 'active' ? 'Active' : props.state == 'inactive' ? 'Inactive' : '' ;
+          %>
+
+          <div class="card mb-3">
+            <div class="card-header">SPARC™ <%= treatmentCaption %> Treatments</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered" width="100%" cellspacing="0">
+                  <caption>SPARC™ <%= treatmentCaption %> Treatments</caption>
+                  <thead>
+                    <tr class="text-center">
+                      <th scope="col">Status</th>
+                      <th scope="col">Treatment</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col"><img src="/assets/img/logos/canary/canarySolo_k.svg" class="img-fluid" alt="Responsive image" width="20px"></th>
+                      <th scope="col">Start Time</th>
+                      <th scope="col">End Time</th>
+                      <th scope="col">Duration</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        <% treatments.forEach((treatment, index) => {
+                          let nodeCount = treatment.nodes.split(',').length;
+                          let duration = func_s.getDuration(treatment.start_time, treatment.end_time);
+                        %>
+                            <tr class="text-center">
+                                <th scope="row" class="align-middle"><% if (treatment.isActive == 'active') { %> active <% } else  { %> complete <% } %> </th>
+                                <td class="align-middle"><%= treatment.treatment_id %></td>
+                                <td class="align-middle"><%= treatment.customer_name %></td>
+                                <td class="align-middle"><%= nodeCount %> </td>
+                                <td class="align-middle"><%= func_s.moment(treatment.start_time).format('MM/DD/YY h:mm')  %></td>
+                                <td class="align-middle"><%= treatment.end_time !== null ?  func_s.moment(treatment.end_time).format('MM/DD/YY h:mm') :  'active'; %></td>
+                                <td class="align-middle"><%= treatment.end_time !== null ? func_s.getDuration(treatment.start_time, treatment.end_time) + ' hr.' : 'active' %></td>
+                                <td class="align-middle">
+                                    <a href="/api/treatment/view/<%= treatment.id %>?td=<%= retun_to_url %>"  rel="noopener" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                    <a href="/api/treatment/archive<%= treatment.id %>"  rel="noopener" class="btn btn-sm btn-primary"><i class="fa fa-archive"></i></a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+          </div>
+          <% } else { %>
+              <p class="text-center">No treatments found.</p>
+          <% } %>

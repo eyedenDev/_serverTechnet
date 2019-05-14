@@ -1,0 +1,69 @@
+<% if (treatments.length > 0) { %>
+<div class="container-fluid">
+<div class="card mb-3">
+
+
+
+  <%   let treatmentCaption = props.state == 'active' ? 'Active' : props.state == 'inactive' ? 'Inactive' : '' ;%>
+  <div class="card-header"><i class="fas fa-table"></i> SPARC™ <%= treatmentCaption %> Treatments</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dt_locVent" width="100%" cellspacing="0" style="position: relative; overflow:auto; max-height:100vh; width:100%">
+        <thead>
+          <tr class="align-middle text-center">
+            <th>Status</th>
+            <th>Tech.</th>
+            <th><i class="fas fa-sort mr-2"></i>Gateway</th>
+            <th><i class="fas fa-sort mr-2"></i>Treatment Id</th>
+            <th><i class="fas fa-sort mr-2"></i>Customer Id</th>
+            <th><i class="fas fa-sort mr-2"></i>Customer Name</th>
+            <th><i class="fas fa-sort mr-2"></i>Latitude</th>
+            <th><i class="fas fa-sort mr-2"></i>Longitude</th>
+
+
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Duration</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% treatments.forEach((treatment, index) => {
+
+          %>
+              <tr class="text-center">
+                  <!-- <th scope="row" class="align-middle"><% if (treatment.isActive == 'active') { %> Active <% } else if (treatment.isActive == 'pending') { %>  Pending <% } else { %> Complete <% } %> </th> -->
+                  <th scope="row" class="align-middle"><%= treatment.status %></th>
+                  <th scope="row" class="align-middle"><%= treatment.tech %></th>
+
+                  <td class="align-middle"><%= treatment.gateway_id %></td>
+                  <td class="align-middle"><%= treatment.treatment_id %></td>
+                  <td class="align-middle"><%= treatment.customer_id %></td>
+                  <td class="align-middle"><%= treatment.customer_name !== null ? treatment.customer_name : 'N/A' ;%></td>
+                  <td class="align-middle"><%= treatment.latitude !== null ? treatment.latitude : 'N/A'; %></td>
+                  <td class="align-middle"><%= treatment.longitude !== null ? treatment.longitude : 'N/A';  %></td>
+
+                  <td class="align-middle"><%= func_s.moment(treatment.start_time).format('MM/DD/YY h:mm', 'America/Vancouver')  %></td>
+                  <td class="align-middle"><%= treatment.end_time !== null ?  func_s.moment(treatment.end_time).format('MM/DD/YY h:mm', 'America/Vancouver') :  ''; %></td>
+                  <td class="align-middle"><%= treatment.duration !== null && treatment.duration !== undefined ? treatment.duration + ' hr.' : '' %></td>
+                  <td class="align-middle">
+                      <a href="/api/treatment/view/<%= treatment.id %><%= retun_to_url %>"  rel="noopener" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                      <% if(showUsersSub) { %>
+                      <a href="/api/treatment/archive/<%= treatment.id %><%= retun_to_url %>" rel="noopener" class="btn btn-sm btn-secondary disabled"><i class="fa fa-archive"></i></a>
+                      <a href="/api/treatment/delete/<%= treatment.id %><%= retun_to_url %>" rel="noopener" class="btn btn-sm btn-danger disabled "><i class="fas fa-trash-alt"></i></a>
+                      <% } %>
+                  </td>
+              </tr>
+          <% }) %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+</div>
+</div>
+<% } else { %>
+    <p class="text-center">No <%= searchObjs %> found.</p>
+<% } %>

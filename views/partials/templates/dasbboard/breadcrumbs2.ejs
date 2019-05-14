@@ -1,0 +1,17 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="#">Dashboard</a>
+  </li>
+  <li class="breadcrumb-item active">Overview</li>
+</ol>
+
+
+<ol class="breadcrumb">
+<% breadcrumbs.forEach((crumb, index) => { %>
+  <% if(!crumb.isActive) { %>
+    <li class="breadcrumb-item"><a href="<%= crumb.link %>"><%= crumb.label %></a></li>
+  <% } else {%>
+    <li class="breadcrumb-item active"><%= crumb.label %></li>
+  <% } %>
+<% }) %>
+</ol>

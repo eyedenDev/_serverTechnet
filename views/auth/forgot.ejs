@@ -1,0 +1,46 @@
+<% include ../partials/templates/page.header.ejs %>
+    <div class="container align-self-center">
+        <% if (message != '') { %>
+            <p class="text-center text-"<%= message_type ? message_type : 'danger'; %><%= message %></p>
+        <% } %>
+    </div>
+    <div id="login-row" class="row justify-content-center align-items-center mt-5">
+      <!-- LOGIN FORM -->
+                <form lass="form-signin" action="/" method="post" enctype="multipart/form-data">
+                  <div class="text-center">
+                    <img class="mb-4 img-fluid" src="assets/img/logos/corp/tmIcon.svg" alt="" width="175" height="175">
+                  </div>
+                  <legend>Forgot Password</legend>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="username" autofocus class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-sm " value="Reset Password">
+                  </div>
+
+                    <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                </form>
+      </div>
+
+    <div id="login-row" class="row justify-content-center align-items-center mt-5">
+      <!-- LOGIN FORM -->
+                <form lass="form-forgot" action="/api/forgot" method="post" enctype="multipart/form-data">
+                  <div class="text-center">
+                    <img class="img-fluid" src="assets/img/logos/corp/tmIcon.svg" alt="" width="125" height="125">
+                  </div>
+                  <legend>Forgot Password</legend>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="username" autofocus class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-sm " value="Reset Password">
+                  </div>
+
+                    <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                </form>
+      </div>
+
+      <!-- </div> -->
+      <% include ../partials/templates/pg_close.ejs %>

@@ -1,0 +1,91 @@
+<div class="col-lg-12 mx-auto w-80 p-3 text-center">
+  <div class="card">
+    <div class="card-header d-flex align-items-center text-center">
+      <h4>Update Profile</h4>
+    </div>
+    <div class="card-body">
+      <% if (message != '') { %>
+          <div class="<%= message_type ? `alert alert-${message_type}` : 'alert alert-light'; %>"><%= message %></div>
+      <% } %>
+      <% let acc_types = ['technician','designer','admin','r&d'];%>
+      <form class="mt-4" action=""  method="post" enctype="multipart/form-data" autocomplete="off">
+        <input type="hidden" name="id" value="<%=  user ? user.id : '' ; %>">
+        <input type="hidden" name="account_type" value="<%=  user ? user.account_type : '' ; %>">
+
+
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">First :</div>
+          </div>
+            <input type="text" class="form-control" name="first_name" value="<%= user.first_name %>" >
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Last :</div>
+          </div>
+          <input type="text" class="form-control" name="last_name" value="<%= user.last_name %>">
+
+        </div>
+        <% if (user.account_type == 'designer' || user.account_type == 'admin') { %>
+        <div class="input-group mb-3">
+        <% }else { %>
+          <div class="input-group mb-4">
+
+        <% }%>
+          <div class="input-group-prepend">
+            <div class="input-group-text">Email</div>
+          </div>
+          <input type="email" class="form-control" name="email" value="<%= user.email %>">
+        </div>
+        <% if (user.account_type == 'designer' || user.account_type == 'admin') { %>
+          <select class="custom-select mb-3" id="inlineFormInputGroupUser_type" name="account_type">
+          <% acc_types.forEach((type, index) => { %>
+            <% if (user) { %>
+            <%  let isSelected = user.account_type == type ? 'Selected' : ''; %>
+            <option <%= isSelected %> value="<%= type %>"><%= type %></option>
+            <% } else { %>
+              <%  let isSelected = type == 'technician' ? 'Selected' : ''; %>
+              <option <%= isSelected %> value="<%= type %>"><%= type %></option>
+            <% } %>
+          <% }) %>
+          </select>
+
+        <% } %>
+
+
+
+          <!-- <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username"> -->
+        <!-- </div> -->
+        <div class="dropdown-divider "></div>
+        <div class="row mt-4 mb-3">
+        <div class="input-group  col-lg-4">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Old password :</div>
+          </div>
+            <input type="password" class="form-control" name="old_password" value="" >
+        </div>
+        <div class="input-group  col-lg-4">
+          <div class="input-group-prepend">
+            <div class="input-group-text">New password:</div>
+          </div>
+            <input type="password" class="form-control" name="new_password" value="" >
+        </div>
+        <div class="input-group col-lg-4">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Conf password:</div>
+          </div>
+            <input type="password" class="form-control" name="conf_password" value="" >
+        </div>
+        </div>
+
+
+
+        <a href="/api/display_treatments/all" id="cancel" name="cancel" class="btn btn-sm btn-danger mr-2">Cancel</a>
+        <button type="submit" class="btn btn-warning btn-sm mr-2" name="processUser" value="<%= submit_value %>"><%- submit_label %></button>
+
+      </form>
+    </div>
+  </div>
+</div>
+</div>

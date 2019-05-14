@@ -1,0 +1,161 @@
+<!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <div class="float-left">
+                SPARC™ Disinfection Treatment
+              </div>
+              <div class="float-right">
+                 Customer: <%= treatment.customer %>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                  <thead>
+                    <tr class="text-center">
+                      <th scope="col">Status</th>
+                      <th scope="col"><img src="/assets/img/logos/canary/canarySolo_k.svg" class="img-fluid" alt="Responsive image" width="20px"></th>
+                      <th scope="col">Chirps</th>
+                      <th scope="col">Last Chirp</th>
+                      <th scope="col">DB Table</th>
+
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                          <% let calData;
+                            canaries.forEach((canary, index) => {
+                            if (numLocations <= 2) {
+                              let indexMark = canaries.indexOf("'xxx'"),
+                                loc1Canaries = canaries.slice(0,indexMark),
+                                loc2Canaries = canaries.slice(indexMark+1),
+                                treatmentLocations = locations.split(',');
+                                if (canaries.indexOf("'xxx'") == -1) {
+                                  calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                } else if (loc1Canaries.indexOf(canary) !== -1) {
+                                  calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                } else if (loc2Canaries.indexOf(canary) !== -1){
+                                  calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[1]}_cal`;
+                                }
+                            } else {
+                              switch (numLocations) {
+                                case 5:{
+
+                                  let indexOne = canaries.indexOf("'xxx'"),
+                                    indexTwo = canaries.indexOf("'xxx'", indexOne),
+                                    indexThree = canaries.indexOf("'xxx'", indexTwo),
+                                    indexFour = canaries.indexOf("'xxx'", indexThree),
+                                    indexFive = canaries.indexOf("'xxx'", indexFour),
+                                    loc1Canaries = canaries.slice(0,indexOne),
+                                    loc2Canaries = canaries.slice((indexOne+1), indexOne+indexTwo+1),
+                                    loc3Canaries = canaries.slice((indexOne+indexTwo+2), (indexOne+indexTwo+indexThree)+1),
+                                    loc4Canaries = canaries.slice(indexFour+ indexThree+2+1),
+                                    loc5Canaries = canaries.slice(indexFour+ indexThree+2+1),
+                                    treatmentLocations = locations.split(',');
+/*
+                                    // if (canaries.indexOf("'xxx'") == -1) {
+                                    //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                    // } else if (loc1Canaries.indexOf(canary) !== -1) {
+                                    //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                    // } else if (loc2Canaries.indexOf(canary) !== -1){
+                                    //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[1]}_cal`;
+                                    // } else if (loc3Canaries.indexOf(canary) !== -1){
+                                    //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[2]}_cal`;
+                                    // } else if (loc4Canaries.indexOf(canary) !== -1){
+                                    //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[3]}_cal`;
+                                    // }
+                                  // let indexOne = canaries.indexOf("'xxx'"),
+                                  //   loc1Canaries = canaries.slice(0,indexOne),
+                                  //   indexTwo = canaries.indexOf("'xxx'", indexOne),
+                                  //   indexThree = canaries.indexOf("'xxx'", indexTwo),
+                                  //   indexFour = canaries.indexOf("'xxx'", indexThree),
+                                  //   indexFive = canaries.indexOf("'xxx'", indexFour),
+                                  //   loc2Canaries = canaries.slice((indexOne+1), indexOne+indexTwo),
+                                  //   loc3Canaries = canaries.slice((indexOne+indexTwo+1), indexOne+indexTwo+indexThree),
+                                  //   loc4Canaries = canaries.slice((indexOne+indexTwo+indexThree+1), indexOne+indexTwo+indexThree+indexFour),
+                                  //   loc5Canaries = canaries.slice(indexThree+ indexThree+2+1),
+                                  //   treatmentLocations = locations.split(',');
+                                  //
+                                  //   // if (canaries.indexOf("'xxx'") == -1) {
+                                  //   //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                  //   // } else if (loc1Canaries.indexOf(canary) !== -1) {
+                                  //   //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                  //   // } else if (loc2Canaries.indexOf(canary) !== -1){
+                                  //   //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[1]}_cal`;
+                                  //   // } else if (loc3Canaries.indexOf(canary) !== -1){
+                                  //   //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[2]}_cal`;
+                                  //   // } else if (loc4Canaries.indexOf(canary) !== -1){
+                                  //   //   calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[3]}_cal`;
+                                  //   // }
+                                  // console.log(canaries);*/
+
+                                }
+                                  break;
+                                case 4:{
+                                  let indexOne = canaries.indexOf("'xxx'"),
+                                    indexTwo = canaries.indexOf("'xxx'", indexOne),
+                                    indexThree = canaries.indexOf("'xxx'", indexTwo),
+                                    indexFour = canaries.indexOf("'xxx'", indexThree),
+                                    loc1Canaries = canaries.slice(0,canaries.indexOf("'xxx'")),
+                                    loc2Canaries = canaries.slice((canaries.indexOf("'xxx'")+1), indexOne+indexTwo),
+                                    loc3Canaries = canaries.slice((indexOne+indexTwo+1), indexFour),
+                                    loc4Canaries = canaries.slice(indexThree+ indexThree+2+1),
+                                    treatmentLocations = locations.split(',');
+
+                                    if (canary !== "'xxx'") {
+                                      if (canaries.indexOf("'xxx'") == -1) {
+                                        calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                      } else if (loc1Canaries.indexOf(canary) !== -1) {
+                                        calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                      } else if (loc2Canaries.indexOf(canary) !== -1){
+                                        calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[1]}_cal`;
+                                      } else if (loc3Canaries.indexOf(canary) !== -1){
+                                        calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[2]}_cal`;
+                                      } else if (loc4Canaries.indexOf(canary) !== -1){
+                                        calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[3]}_cal`;
+                                      }
+                                    }
+                                }
+                                  break;
+                                default:{
+                              let indexOne = canaries.indexOf("'xxx'"),
+                                indexTwo = canaries.indexOf("'xxx'", indexOne),
+                                indexThree = canaries.indexOf("'xxx'", indexTwo),
+                                loc1Canaries = canaries.slice(0,indexOne),
+                                loc2Canaries = canaries.slice((indexOne+1), indexOne+indexTwo+1),
+                                loc3Canaries = canaries.slice(indexTwo+ indexTwo+2),
+                                treatmentLocations = locations.split(',');
+
+                                if (canaries.indexOf("'xxx'") == -1) {
+                                  calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                } else if (loc1Canaries.indexOf(canary) !== -1) {
+                                  calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[0]}_cal`;
+                                } else if (loc2Canaries.indexOf(canary) !== -1){
+                                  calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[1]}_cal`;
+                                } else if (loc3Canaries.indexOf(canary) !== -1){
+                                  calData = `${treatment.gateway}_${canary}_${treatment.treatmentId}_${treatmentLocations[2]}_cal`;
+                                }
+                              }
+                              }
+                            }
+                          %>
+                              <% if ( canary !== "'xxx'") { %>
+                                  <tr class="text-center">
+                                      <th scope="row" class="align-middle"><% if (treatment.isActive == 'active') { %> active <% } else  { %> complete <% } %> </th>
+                                      <td class="align-middle"><%= canary %></td>
+                                      <td class="align-middle"><%= chirps %></td>
+                                      <td class="align-middle"><%= func_s.moment(last_chirp).format('MM/DD/YY h:mm') %> </td>
+                                      <td class="align-middle"><%= calData  %></td>
+                                      <td class="align-middle">
+                                        <a href="/api/treatment/view_data/<%= treatment.treatmentId %>?c=<%= canary %>&d=<%= calData %>&r=<%= returnVar %>&td=<%= reset_params %>"  rel="noopener" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                      </td>
+                                  </tr>
+                              <% } %>
+                          <% }) %>
+                      </tbody>
+                  </table>
+
+              </div>
+            </div>
+            <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+          </div>

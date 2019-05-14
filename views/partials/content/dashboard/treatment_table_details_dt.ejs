@@ -1,0 +1,50 @@
+<% if (treatments.length > 0) { %>
+<div class="container-fluid">
+<div class="card mb-3">
+
+  <div class="card-header">
+    <div class="float-left">
+      <i class="fas fa-table"></i> SPARC™ Treatment data |
+    </div>
+    <div class="float-right">
+
+    <span class='text-muted'>CUSTOMER NAME:</span> <%= customer.name %> <span class='text-muted'>ID:</span> <%= customer.id %>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered h-100" id="dt_locVent" width="100%" cellspacing="0">
+        <thead>
+          <tr class="align-middle text-center">
+            <th>Status</th>
+            <th><img src="/assets/img/logos/canary/canarySolo_k.svg" class="img-fluid" alt="Responsive image" width="20px"></th>
+            <th>Chirps</th>
+            <th>Last Chirp</th>
+            <th>DB Table</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% treatments.forEach((treatment, index) => { %>
+            <tr class="text-center">
+                <th scope="row" class="align-middle"><% if (treatment.status == 'active') { %> active <% } else  { %> complete <% } %> </th>
+                <td class="align-middle"><%= treatment.node_id %></td>
+                <td class="align-middle"><%= treatment.chirps %></td>
+                <td class="align-middle"><%= func_s.moment(treatment.last_chirp).format('MM/DD/YY h:mm a') %> </td>
+                <td class="align-middle"><%= treatment.db_table  %></td>
+
+                <td class="align-middle">
+                  <a href="/api/treatment/view_data/<%= treatment.treatment_id %>?c=<%= treatment.node_id %>&d=<%= treatment.db_table %>&r=<%= treatment.id %>&td=<%=props.state %>"  rel="noopener" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+</div>
+</div>
+<% } else { %>
+    <p class="text-center">No Data found.</p>
+<% } %>

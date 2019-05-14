@@ -1,0 +1,23 @@
+<% include ../partials/templates/dasbboard/pg_head.ejs %>
+<% include ../partials/templates/dasbboard/header_nav.ejs %>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <% include ../partials/templates/dasbboard/side_bar.ejs %>
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <% include ../partials/templates/dasbboard/breadcrumbs.ejs %>
+          <% include ../partials/templates/dasbboard/blank_form.ejs %>
+          <div class="dropdown-divider mt-2 mb-4"></div>
+          <% include ../partials/content/dashboard/locFrames_dt.ejs %>
+        </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <% include ../partials/templates/dasbboard/sticky_footer.ejs %>
+      </div>
+      <!-- /.content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+<% include ../partials/templates/dasbboard/pg_top_modal.ejs %>
+<% include ../partials/templates/dasbboard/logout_modal.ejs %>
+<% include ../partials/templates/dasbboard/pg_close.ejs %>

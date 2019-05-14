@@ -1,0 +1,33 @@
+<% include ../partials/templates/page.header.ejs %>
+<div class="container">
+<% include ../partials/templates/pg_navigation.ejs %>
+
+    <div class="container mt-5">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        <div class="container">
+        <form class="add-cub-form " action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="node-id">C&Uuml;B  Node ID</label>
+                    <input type="text" class="form-control" name="node_id" id="node-id" placeholder="<%= cub ? cub.node_id : 'Canary ID'; %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="unit-number">C&Uuml;B  Number</label>
+                    <input type="number" class="form-control" name="unit_number" id="unit-number" placeholder="<%= cub ? cub.unit_number : 'Unit Number'; %>" min="1" required>
+                </div>
+                  <div class="form-group col-md-4">
+                    <label for="unit-name">C&Uuml;B  Name</label>
+                    <input type="text" class="form-control" name="unit_name" id="unit-name" placeholder="<%= cub ? cub.unit_name : 'Unit Name'; %>" required>
+                </div>
+            </div>
+            <div  class="text-center">
+              <a href="/api/canarys" id="cancel" name="cancel" class="btn btn-danger btn-sm mb-2"> Cancel</a>
+                <button type="submit" class="btn btn-success btn-sm mb-2 mr-2" name="processCUB" value="update"><i class="fa fa-upload fa-1x"></i> CREATE</button>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+  <!-- </div> -->

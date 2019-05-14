@@ -1,0 +1,33 @@
+<%  %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <a class="navbar-brand" href="/api/canarys">TechNet</a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#technetNavDropdown" aria-controls="technetNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+     </button>
+     <div id="technetNavDropdown" class="navbar-collapse collapse">
+         <ul class="navbar-nav mr-auto">
+           <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="/api/canarys" id="technetDropdownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Canaries <span class="sr-only">(current)</span>
+               </a>
+               <div class="dropdown-menu" aria-labelledby="technetDropdownLink">
+                   <a class="dropdown-item" href="/api/canarys/add">Add a Canary</a>
+               </div>
+           </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="#">CUBs </a>
+             </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="#">Users </a>
+               </li>
+         </ul>
+         <ul class="navbar-nav">
+             <li class="nav-item">
+                 <a class="nav-link" href="/api/profile"><i class="fa fa-cog"></i> Profile</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="/logout">Logout</a>
+             </li>
+         </ul>
+     </div>
+ </nav>

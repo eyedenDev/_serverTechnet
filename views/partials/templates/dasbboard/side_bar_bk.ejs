@@ -1,0 +1,210 @@
+<%
+
+var boardMrkr, trtmntMrkr, canaryMrkr, cubMrkr, userMrkr, industryMrkr, locationMrkr,
+cropMrkr, abateMrkr,disMrkr, restMrkr, pestMrkr, cleanMrkr, wwMrkr
+%>
+
+<ul id="accordion1" class="nav nav-pills flex-column sidebar navbar-nav">
+  <li class="nav-item active">
+    <a class="nav-link" href="/api">
+
+      <i class="fas fa-tachometer-alt"></i>
+      <span> Dashboard</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-1" data-parent="#accordion1">Item 1</a>
+    <div id="item-1" class="collapse ">
+
+    <!-- <div id="item-1" class="collapse show"> -->
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 1-1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 1-2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 1-3</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-2" data-parent="#accordion1">Item 2</a>
+    <div id="item-2" class="collapse">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 2-1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 2-2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 2-3</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#item-3" data-parent="#accordion1">Item 3</a>
+    <div id="item-3" class="collapse">
+      <ul class="nav flex-column ml-3">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sub 3-3</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>
+
+<ul class="sidebar navbar-nav">
+  <li class="nav-item active">
+    <a class="nav-link" href="/api">
+
+      <i class="fas fa-tachometer-alt"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="treatmentsDd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-fw fa-chart-area"></i>
+      <span class="ml-1">Treatments</span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="treatmentsDd">
+      <a class="dropdown-item" href="/api/display_treatments/all">All</a>
+      <a class="dropdown-item" href="/api/display_treatments/active">Active</a>
+      <a class="dropdown-item" href="/api/display_treatments/inactive">Inactive</a>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="/api/canarys">
+      <i class="fas fa-suitcase"></i>
+      <span class="ml-2">Canaries</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/api/cubs">
+      <i class="fas fa-cube"></i>
+      <span class="ml-2">C&Uuml;Bs</span></a>
+  </li>
+  <% if(showUsers) { %>
+    <li class="nav-item">
+      <a class="nav-link" href="/api/user">
+        <i class="fas fa-user-friends"></i>
+        <span class="ml-2">Users</span></a>
+    </li>
+    <div class="dropdown-divider mt-3"></div>
+
+    <li class="nav-item">
+      <a class="nav-link" href="/api/industry_sectors"><i class="fas fa-business-time"></i><span> Industries </span></a>
+    </li>
+
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="apiLoc" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-warehouse"></i>
+        <span>Locations</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="apiLoc">
+        <h6 class="dropdown-header">Locations:</h6>
+        <a class="dropdown-item" href="/api/location_designs">Designs</a>
+        <a class="dropdown-item" href="/api/location_frames">Frames</a>
+        <a class="dropdown-item" href="/api/location_floors">Floors</a>
+        <a class="dropdown-item" href="/api/location_coverings">Coverings</a>
+        <a class="dropdown-item" href="/api/location_gutters">Gutters</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/api/location_heatSystems">Heating Systems</a>
+        <a class="dropdown-item" href="/api/location_vents">Ventilation</a>
+        <a class="dropdown-item" href="/api/location_CO2Systems">CO2</a>
+        <a class="dropdown-item" href="/api/location_energy_screens">Energy Screens</a>
+        <a class="dropdown-item" href="/api/location_sceen_types">Screen Types</a>
+        <a class="dropdown-item" href="/api/location_misc">Miscellaneous</a>
+        <a class="dropdown-item" href="/api/location_power">Power</a>
+
+      </div>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link" href="/api/crops"><i class="fas fa-lemon"></i><span> Crops</span></a>
+    </li>
+
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="api_abt" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fingerprint"></i>
+        <span>Abatements</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="api_abt">
+        <h6 class="dropdown-header">Abatements:</h6>
+        <a class="dropdown-item" href="/api/abatements_fungals">Fungals</a>
+        <a class="dropdown-item" href="/api/abatements_mildews">Mildews</a>
+        <a class="dropdown-item" href="/api/abatements_molds">Molds</a>
+        <a class="dropdown-item" href="/api/abatements_viroids">Viroids</a>
+        <a class="dropdown-item" href="/api/abatements_viruses">Virus</a>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="/api/disinfections"><i class="fas fa-broom"></i><span> Disinfections</span></a>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="apiRest" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fab fa-gripfire"></i>
+        <span >Restorations</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="apiRest">
+        <a class="dropdown-item" href="/api/restorations_fire">Fires</a>
+        <a class="dropdown-item" href="/api/restorations_flood">Floods</a>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="/api/pests"><i class="fas fa-bug"></i><span> Pests</span></a>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link" href="/api/app/disinfections"><i class="fas fa-wine-bottle"></i><span> Cleanup</span></a>
+    </li>
+<!--
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="apiDis" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<i class="fas fa-broom"></i>
+        <span class="ml-1">Disinfection</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="apiDis">
+        <a class="dropdown-item" href="/api/app/abatements/fungals">Fungals</a>
+        <a class="dropdown-item" href="/api/app/abatements/mildews">Mildews</a>
+        <a class="dropdown-item" href="/api/app/abatements/molds">Molds</a>
+        <a class="dropdown-item" href="/api/app/abatements/viroids">Viroids</a>
+        <a class="dropdown-item" href="/api/app/abatements/viruses">Virus</a>
+      </div>
+    </li> -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle disabled" href="#" id="webDd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-code"></i>
+        <span class="ml-1">Web Content</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="webDd">
+        <h6 class="dropdown-header">Login Screens:</h6>
+        <a class="dropdown-item" href="/api/canarys">View C&Uuml;Bs</a>
+        <a class="dropdown-item" href="/api/canarys/add">Add a C&Uuml;B</a>
+        <div class="dropdown-divider"></div>
+        <h6 class="dropdown-header">Other Pages:</h6>
+        <a class="dropdown-item" href="404.html">404 Page</a>
+        <a class="dropdown-item" href="blank.html">Blank Page</a>
+      </div>
+    </li>
+  <% } %>
+</ul>
