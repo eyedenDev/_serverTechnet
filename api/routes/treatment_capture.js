@@ -2003,12 +2003,12 @@ module.exports = function(app) {
                             );
                             if (closeOut !== undefined) {
                               // START DELAYED WEATHER CAPTURE
-                              // startWeatherDelay(
-                              //   treatmentTableId,
-                              //   `${treatment_id}_weatherData_delayed`,
-                              //   treatment_lat,
-                              //   treatment_long
-                              // );
+                              startWeatherDelay(
+                                treatmentTableId,
+                                `${treatment_id}_weatherData_delayed`,
+                                treatment_lat,
+                                treatment_long
+                              );
                               // capture final weatherinput
                               currentWeather(
                                 `${treatment_id}_weatherData`,
