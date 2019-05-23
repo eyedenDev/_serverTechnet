@@ -1,0 +1,16 @@
+db  error 2019-05-22_10:45:43
+   =>    treatment table  tT03_0009_1083558489_MINI GREENHOUSE_G1_33 create creation  ERR: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GREENHOUSE_G1_33 (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`node_id` varchar(7) DE' at line 1
+db  error 2019-05-22_10:45:43
+   =>    treatment table  tT03_0009_1083558489_MINI GREENHOUSE_G1_52 create creation  ERR: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GREENHOUSE_G1_52 (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`node_id` varchar(7) DE' at line 1
+db  error 2019-05-22_10:45:43
+   =>    calibrated canarydata insert 
+     INSERT INTO tT03_0009_1083558489_MINI GREENHOUSE_G1_33 SET ? 
+ C8E9FDD null  49.044998  -122.431999  2019-04-24  07:38:00  20.94  35.00  102.99  0.50  9.00  193.00  2641.00  3203.00  469.00  null  292.00  2045.00  2062.00  306.00  null  null  null  2019-04-24 08:33:39    ERR: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GREENHOUSE_G1_33 SET `node_id` = 'C8E9FDD', `canary_temp` = NULL, `calibration_i' at line 1
+db  error 2019-05-22_10:45:43
+   =>    calibrated canarydata insert 
+     INSERT INTO tT03_0009_1083558489_MINI GREENHOUSE_G1_52 SET ? 
+ C8E9FEE null  49.044998  -122.431999  2019-04-24  07:38:19  15.58  48.00  103.00  0.40  7.00  181.00  2537.00  2750.00  347.00  null  466.00  2044.00  2044.00  526.00  null  null  null  2019-04-24 08:33:41    ERR: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GREENHOUSE_G1_52 SET `node_id` = 'C8E9FEE', `canary_temp` = NULL, `calibration_i' at line 1

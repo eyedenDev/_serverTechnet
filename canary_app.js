@@ -88,6 +88,9 @@ const express = require("express"),
 //   funcone();
 //   setTimeout(run, 100);
 // }, 100);
+let appendName = require("./api/utils/removeSpacesCappIt"),
+  test = "Mini greenhouse";
+console.log(appendName(test));
 
 require("./api/config/passport-local")(passport);
 logger.log("starting app...");

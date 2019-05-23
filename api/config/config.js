@@ -19,7 +19,8 @@ CONFIG.db_port = process.env.MYSQL_SERVICE_PORT || "3306";
 
 CONFIG.db_user_main = process.env.MYSQL_USER || "2018dataUser";
 CONFIG.db_password_main =
-  process.env.MYSQL_PASSWORD || "WR2%,(!4Ys9r35P6dc)<+vhT`G7u:_Q?-Z;J#V&`DMmK";
+  process.env.MYSQL_PASSWORD ||
+  "Um4wqCmI88WUa5dik44XyVTStMXsJRUVmnZ2EKETmZBGljZZFA3uyWEbXLye";
 CONFIG.db_name_main = process.env.MYSQL_DATABASE_T || "2018Tmdatab";
 CONFIG.db_name_api = process.env.MYSQL_DATABASE_A || "TMData_app";
 CONFIG.db_name_arch = process.env.MYSQL_DATABASE_ARCH || "archivedData";

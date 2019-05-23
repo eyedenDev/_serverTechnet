@@ -29,6 +29,7 @@ const CONFIG = require("../config/config"),
   deleteFile = require("../utils/deleteFile2"),
   removeFirstChar = require("../utils/removeFirstChar"),
   removeItem = require("../utils/removeItem"),
+  appendName = require("../utils/removeSpacesCappIt"),
   moment = require("moment"),
   cp = require("child_process"),
   path = require("path"),
@@ -296,7 +297,7 @@ module.exports = function(app) {
                       });
                       for (var l = 0; l < locations.length; l++) {
                         let currentLocatioId = locations[l].id,
-                          locationId = currentLocatioId.toUpperCase(),
+                          locationId = appendName(currentLocatioId),
                           locationCanaries = locations[l].canaries;
                         custLocationQuery +=
                           "INSERT INTO _treatmentLocations SET ?;";
@@ -374,7 +375,7 @@ module.exports = function(app) {
 
                       for (var x = 0; x < locations.length; x++) {
                         let lcActiveLoaction = locations[x].id,
-                          activeLocation = lcActiveLoaction.toUpperCase(),
+                          activeLocation = appendName(lcActiveLoaction),
                           activeCanaries = locations[x].canaries,
                           currentLocationId;
                         // CAPTURE ACTIVE LOCATION ID
@@ -539,7 +540,7 @@ module.exports = function(app) {
                           break;
                         }
                       }
-                      let ucCurrentLocation = currentCanaryLocation.toUpperCase();
+                      let ucCurrentLocation = appendName(currentCanaryLocation);
                       currentDataInsertQuery = `INSERT INTO ${treatment_id}_${ucCurrentLocation}_${gateway_id}_${currentUnitNumber} SET ?`;
                       // CALIBRATE DATA AND INSERT
                       if (currentIsCalibrated) {
@@ -1105,12 +1106,12 @@ module.exports = function(app) {
 
               // SET DEFAULT LOCATION ID
               let lcDefaultLocation = locations[locations.length - 1].id,
-                defaultLocationId = lcDefaultLocation.toUpperCase();
+                defaultLocationId = appendName(lcDefaultLocation);
 
               // APPEND ASSIGNED CANARIES TO IGNORE ARRAY && UNSURE ASSIGNED TABLES ARE CREATED
               for (var i = 0; i < locations.length; i++) {
                 let lcLocation = locations[i].id,
-                  activeLocation = lcLocation.toUpperCase();
+                  activeLocation = appendName(lcLocation);
                 console.log(activeLocation, " <<<<<<<<=");
                 if (!isEmpty(locations[i].canaries)) {
                   let activeCanaries = locations[i].canaries;
@@ -1132,7 +1133,7 @@ module.exports = function(app) {
                   }
                 } else {
                   let tempActivLocation = locations[i].id,
-                    activeLocation = tempActivLocation.toUpperCase();
+                    activeLocation = appendName(tempActivLocation);
                 }
               }
 
@@ -2109,7 +2110,7 @@ module.exports = function(app) {
               // APPEND ASSIGNED CANARIES TO IGNORE ARRAY && UNSURE ASSIGNED TABLES ARE CREATED
               for (var i = 0; i < locations.length; i++) {
                 let lcLocation = locations[i].id,
-                  activeLocation = lcLocation.toUpperCase();
+                  activeLocation = appendName(lcLocation);
                 if (!isEmpty(locations[i].canaries)) {
                   let activeCanaries = locations[i].canaries;
                   for (var a = 0; a < activeCanaries.length; a++) {
@@ -2158,7 +2159,7 @@ module.exports = function(app) {
                     treatmentTableId = canaryCaptureResult[2][0].id;
 
                     if (!ignoreCanries.includes(currentUnitNumber)) {
-                      let ucDefaultLocation = defaultLocationId.toUpperCase(),
+                      let ucDefaultLocation = appendName(defaultLocationId),
                         currentTargetTable = `${treatment_id}_${ucDefaultLocation}_${gateway_id}_${currentUnitNumber}`;
 
                       // APPEND TABLE CREATION TEST ARRAY IF TABLE NOT ALREADI INCLUDED...
