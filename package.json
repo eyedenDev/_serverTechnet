@@ -83,7 +83,7 @@
     "rsync": "^0.6.1",
     "sendgrid": "^5.2.3",
     "shaper": "0.0.5",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.4.0",
     "split": "^1.0.1",
     "split2": "^3.1.0",
     "stream": "0.0.2",
