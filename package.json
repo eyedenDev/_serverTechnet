@@ -92,7 +92,7 @@
     "tweetnacl": "^1.0.0",
     "tweetnacl-util": "^0.15.0",
     "util.promisify": "^1.0.0",
-    "validator": "^10.9.0",
+    "validator": "^13.7.0",
     "wait-until": "0.0.2"
   },
   "proxy": "https://localhost:8080"
